@@ -1,0 +1,62 @@
+{%extends 'base.html'%}
+{%load bootstrap4%}
+{% block content %}
+<div class="container-fluid">
+
+  <h1 class='text-center' style="color: white;background-color: black;">{cards for }today</h1>
+        {% for card in card %}
+
+        <!-- Button trigger modal -->
+<button type="button" data-toggle="modal" data-target="#exampleModalCenter">
+    <a class="img-thumbnail" href="{{card.image}}" data-image-id="{{card.id}}" data-toggle="modal" data-target="#{{card.id}}">
+    <img src="{{ card.image.url }}" alt="Image" id="img{{card.id}}" class="img-fluid" alt="image" style="width:400px;height:450px;padding:10px">
+   </a>
+  <h5 class="modal-title" id="exampleModalLongTitle">{{ card.title }}</h5>
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="{{card.id}}" tabindex="-1" role="dialog" aria-labelledby="{{card.id}}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">{{ card.title }}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <h1>Title:{{card.title}}</h1>      
+            <h2>Subject:{{card.subject}}</h2>  
+            <h3>Describe:{{card.description}}</h3>  
+                
+            <!-- <img src="{{ card.image.url }}" alt="Image" id="img{{card.id}}" class="img-fluid" alt="image"> -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          
+          <a onclick="saveLink ({{card.id}})"><button type="button" class="btn btn-success btn-sm">save</a>
+             
+        </div>
+      </div>
+    </div>
+  </div>
+         
+      {% endfor %}
+    </div>
+
+  </div>
+
+  <script>
+    function saveLink(id) {
+      /* Get the text field */
+      var copyText = document.getElementById("thislinkhere-" + id);
+      /* Select the text field */
+      copyText.select();
+      /* Copy the text inside the text field */
+      document.execCommand("save");
+      /* Alert the copied text */
+      alert("Don't forget to share this link: " + saveText.value);
+    }
+  </script>
+  {% endblock %}
+ 
