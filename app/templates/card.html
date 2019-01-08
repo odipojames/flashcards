@@ -1,0 +1,15 @@
+{% extends ,'base.html'%}
+{% block content%}
+<img src="{{post.image.url}}" style="text-align: center;" alt="" width="570px" height="570px">
+            <p style="font-size:40px">
+                
+            <p class="card-text">{{post.caption}}</p>
+                <small>posted<em><b>:{{post.postedon|timesince}}</b> ago</em></small>
+            <br>
+
+            <div class="col-md-4 col-sm-4 col-xs-4">
+         
+            <div style='margin-left: 20px;' >
+              <br>
+ {{%cards.title%}}
+{%endblock%}
